@@ -11,6 +11,7 @@ int main() {
 
     int N, M;
     cin >> N >> M;
+//test
 
     int A[N+1][N+1];
     int D[N+1][N+1];
