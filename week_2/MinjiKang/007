@@ -1,0 +1,29 @@
+#include <iostream>
+#include <algorithm>
+using namespace std;
+
+int main() {
+	int N, M;
+	cin >> N >> M;
+
+	int* nList = new int[N];
+	for (int i = 0; i < N; i++) cin >> nList[i];
+	sort(nList, nList + N);
+
+	int start_idx = 0, end_idx = N - 1;
+	int count = 0, sum = nList[0] + nList[N - 1];
+	while (start_idx != end_idx) {
+		if (sum < M) {
+			sum -= nList[start_idx++];
+			sum += nList[start_idx];
+		}
+
+		else {
+			if (sum == M) count++;
+			sum -= nList[end_idx--];
+			sum += nList[end_idx];
+		}
+	}
+
+	cout << count;
+}
