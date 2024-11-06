@@ -1,0 +1,41 @@
+#define CRT_SECURE_NO_WARNINGS
+#include <iostream>
+#include <vector>
+#include <stdio.h>
+using namespace std;
+int main() {
+    ios::sync_with_stdio(false);
+    cin.tie(NULL);
+    cout.tie(NULL);
+
+    int N;
+    cin >> N;
+
+    vector <int> num(N, 0);
+    vector <int> sum(N, 0);
+    // 입력 받기
+    for (int i = 0; i < N; i++) cin >> num[i];
+   
+    // 오름차순 정렬, 버블 정렬을 써보자
+    for (int i = 0; i < N-1; i++) {
+        for (int j = 0; j < N-1-i; j++) {
+            if (num[j] > num[j+1]) {
+                int temp = num[j];
+                num[j] = num[j + 1];
+                num[j + 1] = temp;
+            }
+        }
+    }
+    // 구간 합
+    int x = 0; //답
+    sum[0] = num[0];
+
+    for (int k = 1; k < N; k++) {
+        sum[k] = sum[k - 1] + num[k];
+        x += sum[k];
+    }
+    x += sum[0]; //for루프 안에서 안더해진 초항 넣기
+    cout << x;
+    return 0;
+}
+
